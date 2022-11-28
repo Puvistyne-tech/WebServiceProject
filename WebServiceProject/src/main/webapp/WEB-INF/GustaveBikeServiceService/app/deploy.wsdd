@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from GustaveBikeServiceService WSDL service -->
+
+  <service name="GustaveBikeService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://app"/>
+      <parameter name="wsdlServiceElement" value="GustaveBikeServiceService"/>
+      <parameter name="schemaQualified" value="http://app"/>
+      <parameter name="wsdlServicePort" value="GustaveBikeService"/>
+      <parameter name="className" value="app.GustaveBikeService"/>
+      <parameter name="wsdlPortType" value="GustaveBikeService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://app" xmlns:retNS="http://app" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getBikeDisponibility" qname="operNS:getBikeDisponibility" returnQName="retNS:getBikeDisponibilityReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://app" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:bikeId" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://app" xmlns:retNS="http://app" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="addBikeToCart" qname="operNS:addBikeToCart" returnQName="retNS:addBikeToCartReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://app" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:bikeId" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://app" xmlns:retNS="http://app" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="displayAllBikes" qname="operNS:displayAllBikes" returnQName="retNS:displayAllBikesReturn" returnType="rtns:string" soapAction="">
+      </operation>
+      <operation xmlns:operNS="http://app" xmlns:retNS="http://app" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="buyBike" qname="operNS:buyBike" returnQName="retNS:buyBikeReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://app" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:bikeId" type="tns:string"/>
+      </operation>
+      <parameter name="allowedMethods" value="getBikeDisponibility buyBike displayAllBikes addBikeToCart"/>
+
+  </service>
+</deployment>
